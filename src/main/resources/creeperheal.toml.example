@@ -1,0 +1,25 @@
+# Configuration file for CreeperHeal mod
+# This is an example configuration file
+# Copy this file to your server's config/ directory as creeperheal.toml and modify as needed
+
+# A lower number means it will start healing faster
+# Range: 1 ~ 600000
+# Default: 600
+tickStartDelay = 600
+
+# Determines the random nature of the heal. Time between in ticks is the minimum + rand(1,this)
+# Range: 1 ~ 600000
+# Default: 1200
+tickRandomInterval = 1200
+
+# If the healing will replace blocks that were put in after (such as fallen gravel or placed blocks)
+# Default: true
+overrideBlocks = true
+
+# If this is true (and we are not overriding blocks), and a block tries to get healed but something is in the way, then that block will drop as an itemstack on the ground
+# Default: true
+dropBlockConflict = true
+
+# If this is true, only creeper explosions are healed. Otherwise, all explosions will be healed (TNT, stuff from other mods, etc)
+# Default: true
+onlyCreepers = true

@@ -1,0 +1,29 @@
+﻿**********************
+Windows PowerShell 脚本开始
+开始时间: 20251209015212
+用户名: K1\Administrator
+RunAs 用户: K1\Administrator
+配置名称: 
+计算机: K1 (Microsoft Windows NT 10.0.20348.0)
+主机应用程序: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File run_gradle_log.ps1
+进程 ID: 66352
+PSVersion: 5.1.20348.2849
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.20348.2849
+BuildVersion: 10.0.20348.2849
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+已启动脚本，输出文件为 gradle_build.log
+Java Version:
+
+\nGradle Version:
+
+\nRunning Gradle Clean Build...
+
+**********************
+Windows PowerShell 脚本结束
+结束时间: 20251209015217
+**********************
