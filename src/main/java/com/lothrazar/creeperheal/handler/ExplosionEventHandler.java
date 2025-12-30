@@ -3,18 +3,22 @@ package com.lothrazar.creeperheal.handler;
 import com.lothrazar.creeperheal.ConfigRegistryCreeperheal;
 import com.lothrazar.creeperheal.ForgeCreeperHeal;
 import com.lothrazar.creeperheal.worldhealer.WorldHealerSaveDataSupplier;
-import com.lothrazar.library.events.EventFlib;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Creeper;
-import net.minecraftforge.event.level.ExplosionEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
-public class ExplosionEventHandler extends EventFlib {
+public class ExplosionEventHandler {
+
+  public ExplosionEventHandler() {
+    NeoForge.EVENT_BUS.register(this);
+  }
 
   @SubscribeEvent
   public void onDetonate(ExplosionEvent.Detonate event) {
-    if (event.getLevel().isClientSide) {
+    if (event.getLevel().isClientSide()) {
       return;
     }
     Entity exploder = event.getExplosion().getDirectSourceEntity(); // .getSourceMob();

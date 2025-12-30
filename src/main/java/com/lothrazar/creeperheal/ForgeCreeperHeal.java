@@ -1,33 +1,30 @@
 package com.lothrazar.creeperheal;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.lothrazar.creeperheal.handler.ExplosionEventHandler;
 import com.lothrazar.creeperheal.handler.WorldEventHandler;
 import com.lothrazar.creeperheal.handler.WorldTickEventHandler;
 import com.lothrazar.creeperheal.worldhealer.WorldHealerSaveDataSupplier;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.common.NeoForge;
 
-@Mod(ForgeCreeperHeal.MODID)
+@net.neoforged.fml.common.Mod(ForgeCreeperHeal.MODID)
 public class ForgeCreeperHeal {
 
   public static final String MODID = "creeperheal";
-  public static final Logger LOGGER = LogManager.getLogger();
+  public static final Logger LOGGER = LoggerFactory.getLogger(ForgeCreeperHeal.class);
   private static WorldEventHandler WEV;
 
-  public ForgeCreeperHeal() {
-    new ConfigRegistryCreeperheal();
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+  public ForgeCreeperHeal(ModContainer container) {
+    // Register the config using the mod container
+    ConfigRegistryCreeperheal.registerConfig(container);
+    
     ForgeCreeperHeal.WEV = new WorldEventHandler();
-  }
-
-  private void setup(final FMLCommonSetupEvent event) {
+    NeoForge.EVENT_BUS.register(WEV);
     new WorldTickEventHandler();
     new ExplosionEventHandler();
-    //    MinecraftForge.EVENT_BUS.register(WEV);
   }
 
   public static WorldHealerSaveDataSupplier getWorldHealer(ServerLevel level) {

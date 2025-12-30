@@ -1,20 +1,25 @@
 package com.lothrazar.creeperheal.handler;
 
-import com.lothrazar.creeperheal.ForgeCreeperHeal;
 import com.lothrazar.creeperheal.worldhealer.WorldHealerSaveDataSupplier;
-import com.lothrazar.library.events.EventFlib;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class WorldTickEventHandler extends EventFlib {
+import com.lothrazar.creeperheal.ForgeCreeperHeal;
+import net.minecraft.server.level.ServerLevel;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
+
+public class WorldTickEventHandler {
+
+  public WorldTickEventHandler() {
+    NeoForge.EVENT_BUS.register(this);
+  }
 
   @SubscribeEvent
-  public void onWorldTick(TickEvent.LevelTickEvent event) {
-    if (!event.level.isClientSide) {
-      WorldHealerSaveDataSupplier worldHealer = ForgeCreeperHeal.getWorldHealer((ServerLevel) event.level);
-      if (worldHealer != null) {
-        worldHealer.onTick();
+  public void onWorldTick(LevelTickEvent.Post event) {
+    if (!event.getLevel().isClientSide()) {
+      WorldHealerSaveDataSupplier heal = ForgeCreeperHeal.getWorldHealer((ServerLevel) event.getLevel());
+      if (heal != null) {
+        heal.tick(event.getLevel());
       }
     }
   }

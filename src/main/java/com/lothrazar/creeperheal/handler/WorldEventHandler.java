@@ -3,14 +3,17 @@ package com.lothrazar.creeperheal.handler;
 import java.util.HashMap;
 import java.util.Map;
 import com.lothrazar.creeperheal.worldhealer.WorldHealerSaveDataSupplier;
-import com.lothrazar.library.events.EventFlib;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.event.level.LevelEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
-public class WorldEventHandler extends EventFlib {
+public class WorldEventHandler {
 
   private Map<ServerLevel, WorldHealerSaveDataSupplier> worldHealers = new HashMap<ServerLevel, WorldHealerSaveDataSupplier>();
+
+  public WorldEventHandler() {
+  }
 
   public Map<ServerLevel, WorldHealerSaveDataSupplier> getWorldHealers() {
     return worldHealers;
